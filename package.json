@@ -1,6 +1,6 @@
 {
   "name": "Restaurant_details",
-  "version": "1.01",
+  "version": "1.0.1",
   "description": "Exercise - Front End for OpenTable",
   "author": "Michael Ryan",
   "license": "MIT",
@@ -17,6 +17,10 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3",
