@@ -1,11 +1,15 @@
 {
-  "name": "Restaurant_details",
+  "name": "restaurant_details",
   "version": "1.0.1",
   "description": "Exercise - Front End for OpenTable",
   "author": "Michael Ryan",
   "license": "MIT",
   "engines": {
-    "node": ">=6.13.0"
+    "node": ">=6.13.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/br0kentable/Restaurant_details"
+    }
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
@@ -26,12 +30,15 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.9.1",
     "eslint": "^5.14.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.1.0",
     "nodemon": "^1.18.10",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
