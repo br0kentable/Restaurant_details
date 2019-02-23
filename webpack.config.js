@@ -3,14 +3,19 @@
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: './dist/main.js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  // plugins: [
+  //   new webpack.HotModuleReplacementPlugin()
+  // ],
   // rules: [
   //   {
+  //     test: /\.jsx?$/,
+  //     loaders: [‘react-hot’],
+  //     include: path.join(__dirname, ‘public’)
+  // },
+  // {
   //     test: /\.(js|jsx)$/,
   //     exclude: /node_modules/,
   //     use: {

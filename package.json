@@ -15,11 +15,14 @@
     "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "build": "webpack",
-    "prod": "webpack --mode production"
+    "prod": "webpack --mode production",
+    "seed": "node seeding.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "express": "^4.16.4",
     "lodash": "^4.17.11",
     "mysql2": "^1.6.5",
     "react-hot-loader": "^4.7.1",
