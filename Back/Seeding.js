@@ -6,7 +6,7 @@ const model = require('./RestModel');
 const data = require('./rest_test.json');
 
 const seed = (data) => {
-  model.bulkCreate(data);
+  model.Restaurant.bulkCreate(data);
 }
 
 seed()

@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const Seed = require('./Seeding');
 var RestaurantModel = require('./RestModel')
 
-var sequelize = new Sequelize('restaurants', 'root', 'root' {
+var sequelize = new Sequelize('restaurants', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
 

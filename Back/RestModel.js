@@ -67,7 +67,7 @@ module.exports = (sequelize, type) => {
       type: type.STRING
     },
     url: {
-      type: type.STRING
+      type: type.STRING,
       validate: {
         isUrl: true
       }
