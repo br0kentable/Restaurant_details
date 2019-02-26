@@ -31,16 +31,6 @@ module.exports = {
         parties: restaurant['parties'],
         party_contact: restaurant['party_contact'],
         special: restaurant['special'],
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
     })
   })
   queryInterface.bulkDelete('Restaurants', null);
@@ -49,12 +39,5 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('Restaurants', null)
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
   }
 };

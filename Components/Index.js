@@ -1,9 +1,5 @@
-﻿import _ from 'lodash';
+﻿import Dummy from './dummy';
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
 
-function component() {
-  let element = document.createElement('div');
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  return element;
-}
-
-document.body.appendChild(component());
+ReactDOM.render(<Dummy />, document.getElementById('root'));

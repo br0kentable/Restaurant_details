@@ -1,5 +1,7 @@
 ﻿const path = require('path');
 const webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './Components/index.js',
@@ -10,11 +12,15 @@ module.exports = {
   mode: "development",
   module: {
     rules: [
-      // {
-      //   test: /\.jsx?$/,
-      //   loaders: ["react-hot"],
-      //   include: path.join(__dirname, "public")
-      // },
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [':data-src']
+          }
+        }
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
@@ -29,11 +35,15 @@ module.exports = {
   resolve: { extensions: ["*", ".js", ".jsx"] },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './dist',
-    publicPath: './dist',
+    contentBase: path.join(__dirname, './src'),
+    publicPath: 'http://localhost:8080/dist',
     hot: true
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: "./src/index.html"
+    }),
+    // new CleanWebpackPlugin(['dist/*'])
   ],
 };

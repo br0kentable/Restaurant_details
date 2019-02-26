@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 module.exports = (sequelize, type) => {
-  var Restaurant = sequelize.define('restaurant', {
+  var Restaurant = sequelize.define('Restaurant', {
     id: {
       type: type.STRING,
       primaryKey: true,

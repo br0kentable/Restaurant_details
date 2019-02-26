@@ -1,15 +1,12 @@
-var models  = require('../models');
+var db  = require('../models/index.js');
+var venues = require('../models').Restaurant;
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res) {
-  models.Restaurant.findAll({
-    where: { id: req.params.userId }
-  }).then(function(restaurant) {
-    res.render('index', {
-      title: 'Sequelize: Express Example',
-      restaurant: restaurant
-    });
+router.get('/:id', function(req, res) {
+  venues.findAll({}).then(function(restaurant) {
+    console.log('Restaurant', restaurant);
+    res.json(restaurant);
   });
 });
 
