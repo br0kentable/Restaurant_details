@@ -9,10 +9,11 @@ class Dummy extends Component{
   }
 
 componentDidMount() {
-  axios.get('http://localhost:3001/thfUjkN4Tv')
+  axios.get('http://localhost:3001/wild', {
+    crossdomain: true })
     .then(res => {
       this.setState({
-        name: res.name
+        name: res.data.name
       })
       console.log(res);
     })

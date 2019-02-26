@@ -37,6 +37,9 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, './src'),
     publicPath: 'http://localhost:8080/dist',
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    },
     hot: true
   },
   plugins: [

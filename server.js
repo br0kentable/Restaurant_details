@@ -2,7 +2,6 @@
 var http = require('http')
 var createError = require('http-errors')
 var path = require('path')
-var indexRouter = require('./routes/index');
 
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler')
@@ -17,7 +16,27 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-app.use('/', indexRouter);
+
+var mysql = require('mysql')
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : null,
+  database : 'restaurant_details'
+});
+
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('You are now connected...')
+});
+
+app.get('/wild', function (req, res) {
+  var queryStr = 'SELECT * FROM Restaurants ORDER BY RAND() LIMIT 1';
+  connection.query(queryStr, function(error, results) {
+    res.json(results[0]);
+  });
+});
+
 app.set('view engine', 'pug');
 
 app.set('port', process.env.PORT || 3001);
