@@ -1,14 +1,9 @@
 const Sequelize = require('sequelize');
+const source = require('./rest_test.json');
 
 const sequelize = new Sequelize('restaurant_details', 'root', null, {
   host: 'localhost',
   dialect: 'mysql',
-  pool: {
-    max: 10,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
 });
 
 const Restaurant = sequelize.define('Restaurant', {
@@ -42,9 +37,12 @@ const Restaurant = sequelize.define('Restaurant', {
   timestamps: false
 });
 
-sequelize.sync({force: false})
+Restaurant.sync({force: false})
   .then(() => {
     console.log('Database and table created!')
+    async ({ Restaurant, source } ) => await Restaurant
+      .destroy({ where:{} })
+      .then(async () => await Restaurant.bulkCreate(source))
   });
 
 module.exports = Restaurant;
