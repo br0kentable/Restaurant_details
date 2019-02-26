@@ -37,15 +37,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const models = require('./models');
+var server = http.createServer(app);
 
-models.sequelize.sync({ force: false })
-.then(() => {
-  console.log(`Dinner is served!!`)
-  var server = http.createServer(app)
-  server.listen(app.get('port'), () => {
+server.listen(app.get('port'), () => {
     console.log('Server running on ' + app.get('port'))
-  });
-})
+});
 
 module.exports = app;

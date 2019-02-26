@@ -1,10 +1,9 @@
-var db  = require('../models/index.js');
-var venues = require('../models').Restaurant;
+const Restaurant = require('../sequelize');
 var express = require('express');
 var router = express.Router();
 
 router.get('/:id', function(req, res) {
-  venues.findAll({}).then(function(restaurant) {
+  Restaurant.findAll().then((restaurant) => {
     console.log('Restaurant', restaurant);
     res.json(restaurant);
   });
