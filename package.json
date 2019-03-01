@@ -25,6 +25,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "autoprefixer": "^9.4.9",
@@ -99,7 +100,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
-      "eslint --fix", "git add"
+      "eslint --fix",
+      "git add"
     ]
   }
 }

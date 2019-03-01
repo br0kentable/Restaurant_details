@@ -1,5 +1,6 @@
 ﻿const path = require("path");
 const webpack = require("webpack");
+const pkg = require('./package.json');
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -27,6 +28,10 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         loader: "babel-loader",
+      },
+      {
+        test: /\.mjs$/,
+        type: 'javascript/auto',
       },
       {
         test: /\.scss$/,
