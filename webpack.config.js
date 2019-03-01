@@ -1,13 +1,12 @@
-﻿const path = require('path');
-const webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+﻿const path = require("path");
+const webpack = require("webpack");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './Components/index.js',
+  entry: "./Components/index.js",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist")
   },
   mode: "development",
   module: {
@@ -15,9 +14,9 @@ module.exports = {
       {
         test: /\.(html)$/,
         use: {
-          loader: 'html-loader',
+          loader: "html-loader",
           options: {
-            attrs: [':data-src']
+            attrs: [":data-src"]
           }
         }
       },
@@ -27,18 +26,68 @@ module.exports = {
         loader: "babel-loader",
       },
       {
+        test: /\.scss$/,
+        use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+                options: {
+                    sourceMap: true,
+                }
+              },
+            {
+              loader: "sass-loader",
+              options: {
+                  implementation: require("node-sass"),
+                  sourceMap: true
+              }
+          }
+        ]
+    },
+      {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      }
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          }
+        ]
+      },
+      {
+        test: /\.sss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1
+            }
+          },
+          "postcss-loader"
+        ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: './fonts/[name].[ext]',
+                outputPath: '../'
+            }
+        }]
+    }
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
   devServer: {
-    contentBase: path.join(__dirname, './src'),
-    publicPath: 'http://localhost:8080/dist',
+    contentBase: path.join(__dirname, "./src"),
+    publicPath: "http://localhost:8080/dist",
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      "Access-Control-Allow-Origin": "*"
     },
     hot: true
   },
@@ -47,6 +96,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "./src/index.html"
     }),
-    // new CleanWebpackPlugin(['dist/*'])
   ],
 };
