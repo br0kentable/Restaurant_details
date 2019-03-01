@@ -3,7 +3,10 @@ const webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./Components/index.js",
+  entry: {
+    app: "./Components/index.js",
+    vendor: Object.keys(pkg.dependencies).filter(name => (name != 'font-awesome'))
+  },
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")
@@ -78,7 +81,14 @@ module.exports = {
                 outputPath: '../'
             }
         }]
-    }
+      },
+      {
+        test: /font-awesome\.config\.js/,
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'font-awesome-loader' }
+        ]
+      },
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },

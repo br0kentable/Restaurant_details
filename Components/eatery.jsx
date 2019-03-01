@@ -66,10 +66,10 @@ componentDidMount() {
         special: res.data.special
       })
     })
-    then(axios.post('http://localhost:1337/ratings', {
-      id: this.state.id,
-      crossdomain: true}))
-    .then(res => console.log('RES', res))
+    // .then(axios.post('http://localhost:1337/ratings', {
+    //   id: this.state.id,
+    //   crossdomain: true}))
+    // .then(res => console.log('RES', res))
     .catch(function (error) {
       // handle error
       console.log(error);
