@@ -5,6 +5,9 @@
 @import "node_modules/bootstrap/scss/root";
 @import "node_modules/bootstrap/scss/reboot";
 @import "node_modules/bootstrap/scss/type";
+$font-family-base: 'Brandon Text';
+$font-size-base: .15rem;
+$font-size-lg: $font-size-base * 1.5;
 @import "node_modules/bootstrap/scss/images";
 @import "node_modules/bootstrap/scss/code";
 @import "node_modules/bootstrap/scss/grid";
@@ -19,6 +22,8 @@
 @import "node_modules/bootstrap/scss/nav";
 @import "node_modules/bootstrap/scss/navbar";
 @import "node_modules/bootstrap/scss/card";
+$card-spacer-x: .25rem;
+$card-border-color: rgba($white, .0);
 @import "node_modules/bootstrap/scss/breadcrumb";
 @import "node_modules/bootstrap/scss/pagination";
 @import "node_modules/bootstrap/scss/badge";
@@ -38,19 +43,19 @@
 @import "node_modules/bootstrap/scss/print";
 
 @font-face {
-  font-family: "Brandon Text";
+  font-family: 'Brandon Text';
   src: url('/Users/io/Code/GitHub/Restaurant_details/src/fonts/Brandon Text/BrandonText-Regular.otf') format('otf');
   font-weight: normal;
 };
 
 @font-face {
-  font-family: "Brandon Text";
+  font-family: 'Brandon Text';
   src: url('/Users/io/Code/GitHub/Restaurant_details/src/fonts/Brandon Text/BrandonText-Medium.otf') format('otf');
   font-weight: medium;
 };
 
 @font-face {
-  font-family: "Brandon Text";
+  font-family: 'Brandon Text';
   src: url('/Users/io/Code/GitHub/Restaurant_details/src/fonts/Brandon Text/BrandonText-Bold.otf') format('otf');
   font-weight: bold;
 };
