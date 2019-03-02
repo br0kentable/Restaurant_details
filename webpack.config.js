@@ -51,7 +51,7 @@ module.exports = {
               }
           }
         ]
-    },
+      },
       {
         test: /\.css$/,
         use: [
@@ -96,7 +96,14 @@ module.exports = {
       },
     ]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  resolve: { extensions: ["*", ".js", ".jsx"] ,
+    alias: {
+      pg: path.resolve(__dirname, "empty_module"),
+      sqlite3: path.resolve(__dirname, "empty_module"),
+      "pg-hstore": path.resolve(__dirname, "empty_module"),
+      tedious: path.resolve(__dirname, "empty_module"),
+    },
+  },
   devtool: "inline-source-map",
   devServer: {
     contentBase: path.join(__dirname, "./src"),
@@ -105,6 +112,19 @@ module.exports = {
       "Access-Control-Allow-Origin": "*"
     },
     hot: true
+  },
+  externals: {
+    "child_process": "require('child_process')",
+    fs: "require('fs')",
+    tls: "require('tls')",
+    path: "require('path')",
+    jquery: "require('jquery')",
+    interpret: "require('interpret')",
+    module: "require('module')",
+    net: "require('net')",
+    "spdx-exceptions": "require('spdx-exceptions')",
+    "spdx-license-ids": "require('spdx-license-ids')",
+    "spdx-license-ids/deprecated": "require('spdx-license-ids/deprecated')",
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
