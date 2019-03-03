@@ -2,9 +2,16 @@
 import ReactDOM from "react-dom";
 const axios = require('axios');
 import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import VenueDetails from './VenueDetails';
+import VenueDetails from '/Users/io/Code/GitHub/Restaurant_details/Components/VenueDetails.jsx';
+import Heading from '/Users/io/Code/GitHub/Restaurant_details/Components/heading.jsx';
+import PhotoHeading from '/Users/io/Code/GitHub/Restaurant_details/Components/photoHeading.jsx';
+import DetailsSub from '/Users/io/Code/GitHub/Restaurant_details/Components/detailsSubheading.jsx'
+import PhotoBase from '/Users/io/Code/GitHub/Restaurant_details/Components/photoBase.jsx';
+import Menu from '/Users/io/Code/GitHub/Restaurant_details/Components/menu.jsx';
 
 class Eatery extends Component{
   constructor(props) {
@@ -66,10 +73,10 @@ componentDidMount() {
         special: res.data.special
       })
     })
-    then(axios.post('http://localhost:1337/ratings', {
-      id: this.state.id,
-      crossdomain: true}))
-    .then(res => console.log('RES', res))
+    // .then(axios.post('http://localhost:1337/ratings', {
+    //   id: this.state.id,
+    //   crossdomain: true}))
+    // .then(res => console.log('RES', res))
     .catch(function (error) {
       // handle error
       console.log(error);
@@ -97,22 +104,30 @@ componentDidMount() {
     }
     return(
       <Container>
+        <Heading />
+        <PhotoHeading />
+        <Navbar bg="light">
+          <Nav className="mr-auto">
+            <Nav.Link href="/">Overview</Nav.Link>
+            <Nav.Link href="#photos">Photos</Nav.Link>
+            <Nav.Link href="#menu">Menu</Nav.Link>
+            <Nav.Link href="#review">Review</Nav.Link>
+            <Nav.Link href="#twitter">Twitter</Nav.Link>
+          </Nav>
+        </Navbar>
+        <hr></hr>
         <Row>
           <Col xs='8'><h1 className="mt-4">{this.state.name}</h1></Col>
           <hr></hr>
         </Row>
+        <DetailsSub />
         <Row>
-          <Col xs='8'>Tags 1</Col>
+          <Col xs='8'><p className="display-4">{this.state.description}</p></Col>
         </Row>
-        <Row>
-          <Col xs='8'>Tags 2</Col>
-        </Row>
-        <Row>
-          <Col xs='8'>{this.state.description}</Col>
-        </Row>
-        <Row>
-          <Col xs='8'>Placeholder</Col>
-        </Row>
+        <PhotoBase />
+        <Menu menu1={this.state.menuOne} menu2={this.state.menuTwo}
+          menu3={this.state.menuThree} menu4={this.state.menuFour}
+          menu5={this.state.menuFive} />
         <Row>
           <Col xs="8"></Col>
           <Col xs='4'>

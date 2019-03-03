@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: 'airbnb',
+  extends: "airbnb",
   globals: {
     Atomics: 'readonly',
     BSN: false,
@@ -18,8 +18,22 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    "react",
   ],
   rules: {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        extensions: [".js", "jsx"]
+      }
+    ],
+    "max-len": ["error", 80]
   },
+  settings: {
+    "import/resolver": {
+      webpack: {
+        config: "webpack.config.js"
+      }
+    }
+  }
 };

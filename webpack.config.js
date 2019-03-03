@@ -1,9 +1,12 @@
 ﻿const path = require("path");
 const webpack = require("webpack");
+const pkg = require("./package.json");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./Components/index.js",
+  entry: {
+    app: "./Components/index.js",
+  },
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")
@@ -11,6 +14,80 @@ module.exports = {
   mode: "development",
   module: {
     rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        exclude: [
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/__mocks__"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/__tests__"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/views"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/db.js"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/rest_test.json"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/server.js")
+        ],
+        type: "javascript/auto",
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: [
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/__mocks__"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/__tests__"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/views"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/db.js"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/rest_test.json"),
+          path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/server.js")
+        ],
+        loader: "babel-loader",
+      },
+      {
+        test: /\.scss$/,
+        use: [
+            {
+              loader: "style-loader"
+            },
+            {
+              loader: "css-loader",
+                options: {
+                }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: function () {
+                  return [
+                    require("precss"),
+                    require("autoprefixer")
+                  ];
+                }
+              }
+            },
+            {
+              loader: "sass-loader",
+              options: {
+                  implementation: require("node-sass"),
+              }
+            }
+        ]
+      },
+      {
+        test: /\.(png|jpg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+            loader: "file-loader",
+            options: {
+              name: '[name].[ext]',
+            }
+        }]
+      },
+      {
+        test: /\.(eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+            loader: "file-loader",
+            options: {
+                name: "[name].[ext]",
+                outputPath: "fonts/"
+            }
+        }]
+      },
       {
         test: /\.(html)$/,
         use: {
@@ -20,68 +97,8 @@ module.exports = {
           }
         }
       },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
-        loader: "babel-loader",
-      },
-      {
-        test: /\.scss$/,
-        use: [
-            "style-loader",
-            {
-              loader: "css-loader",
-                options: {
-                    sourceMap: true,
-                }
-              },
-            {
-              loader: "sass-loader",
-              options: {
-                  implementation: require("node-sass"),
-                  sourceMap: true
-              }
-          }
-        ]
-    },
-      {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1
-            }
-          }
-        ]
-      },
-      {
-        test: /\.sss$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1
-            }
-          },
-          "postcss-loader"
-        ]
-      },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-            loader: 'file-loader',
-            options: {
-                name: './fonts/[name].[ext]',
-                outputPath: '../'
-            }
-        }]
-    }
     ]
   },
-  resolve: { extensions: ["*", ".js", ".jsx"] },
   devtool: "inline-source-map",
   devServer: {
     contentBase: path.join(__dirname, "./src"),
