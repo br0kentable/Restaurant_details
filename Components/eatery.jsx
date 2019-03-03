@@ -4,7 +4,7 @@ const axios = require('axios');
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import VenueDetails from './VenueDetails';
+import VenueDetails from '/Users/io/Code/GitHub/Restaurant_details/Components/VenueDetails.jsx';
 
 class Eatery extends Component{
   constructor(props) {
@@ -108,7 +108,7 @@ componentDidMount() {
           <Col xs='8'>Tags 2</Col>
         </Row>
         <Row>
-          <Col xs='8'>{this.state.description}</Col>
+          <Col xs='8'><p class="display-4">{this.state.description}</p></Col>
         </Row>
         <Row>
           <Col xs='8'>Placeholder</Col>
