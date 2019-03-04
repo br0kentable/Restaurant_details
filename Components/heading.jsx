@@ -3,7 +3,10 @@ import Icon from "../src/search.jpg";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavItem from 'react-bootstrap/NavItem';
+import NavLink from 'react-bootstrap/NavLink';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/Dropdown';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Button from 'react-bootstrap/Button';
 import React, {Component} from "react";
@@ -12,6 +15,36 @@ import ReactDOM from "react-dom";
 function Heading() {
   return(
     <Container>
+      <Nav className="justify-content-end" activeKey="/home"
+      onSelect={selectedKey => alert(`For ${selectedKey}, please contact us at Hack Reactor`)}>
+        <Nav.Item>
+          <Nav.Link href="/home">For Restaurateurs</Nav.Link>
+        </Nav.Item>
+        <Dropdown as={NavItem}>
+          <Dropdown.Toggle as={NavLink}>Mobile</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item>iOS App</Dropdown.Item>
+            <Dropdown.Item>Android App</Dropdown.Item>
+            <Dropdown.Item>Windows Phone App</Dropdown.Item>
+            <Dropdown.Item>Windows 8 App</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+        <Nav.Item>
+          <Nav.Link eventKey="help">Help</Nav.Link>
+        </Nav.Item>
+        <Dropdown as={NavItem}>
+          <Dropdown.Toggle as={NavLink}>EN</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item>Deutsch</Dropdown.Item>
+            <Dropdown.Item>English</Dropdown.Item>
+            <Dropdown.Item>Español</Dropdown.Item>
+            <Dropdown.Item>Français</Dropdown.Item>
+            <Dropdown.Item>Italiano</Dropdown.Item>
+            <Dropdown.Item>Nederlands</Dropdown.Item>
+            <Dropdown.Item>日本語</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Nav>
       <Navbar bg="light" expand="lg">
       <Navbar.Brand href="#home"><img src={Logo} width="156"></img></Navbar.Brand>
       <NavDropdown title="Title Placeholder" id="basic-nav-dropdown" className="mr-auto p-2">
