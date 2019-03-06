@@ -5,13 +5,13 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    app: "./Components/index.js",
+    app: "./src/client/Components/index.js",
   },
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")
   },
-  mode: "development",
+  target: 'web',
   module: {
     rules: [
       {
@@ -30,6 +30,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: [
+          /node_modules/,
           path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/__mocks__"),
           path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/__tests__"),
           path.resolve(__dirname, "/Users/io/Code/GitHub/Restaurant_details/views"),
@@ -99,19 +100,10 @@ module.exports = {
       },
     ]
   },
-  devtool: "inline-source-map",
-  devServer: {
-    contentBase: path.join(__dirname, "./src"),
-    publicPath: "http://localhost:8080/dist",
-    headers: {
-      "Access-Control-Allow-Origin": "*"
-    },
-    hot: true
-  },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: "./src/index.html"
+      filename: "./src/index.html",
+      excludeChunks: [ 'server' ]
     }),
   ],
 };
