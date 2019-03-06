@@ -1,16 +1,17 @@
-﻿import React, {Component} from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 
-function VenueDetails({cross_street, neighborhood, hours, cuisine, style,
+function VenueDetails({
+  cross_street, neighborhood, hours, cuisine, style,
   dress, parking, transit, payment, chef, special, url, phone, details,
-  parties, party_contact}) {
-  return(
+  parties, party_contact,
+}) {
+  return (
     <Container>
       <Row>
-        <Col xs='12'>
+        <Col xs="12">
           <Card>
             <Card.Body>
               <Card.Title>Cross street</Card.Title>
