@@ -3,6 +3,7 @@ const http = require('http');
 const createError = require('http-errors');
 const path = require('path');
 const mysql = require('mysql');
+const errorHandler = require('errorhandler');
 
 const bodyParser = require('body-parser');
 const db = require('./db');
@@ -30,7 +31,7 @@ connection.connect((err) => {
   if (err) throw err;
   else {
     const queryClear = 'TRUNCATE TABLE restaurants';
-    const queryCreate = `CREATE TABLE if not exists restaurants (
+    const queryCreate = `CREATE TABLE IF NOT EXISTS restaurants (
       ID VARCHAR(10) CHARACTER SET utf8,
       name VARCHAR(41) CHARACTER SET utf8,
       description VARCHAR(1768) CHARACTER SET utf8,
@@ -56,17 +57,20 @@ connection.connect((err) => {
       party_contact VARCHAR(33) CHARACTER SET utf8,
       special VARCHAR(229) CHARACTER SET utf8
       )`;
-    const seedQuery = 'INSERT INTO restaurants (id, name, description,  ' +
-      'menuOne, menuTwo, menuThree, menuFour, menuFive, cross_street, neighborhood, ' +
-      'hours, cuisine, style, dress, parking, transit, payment, chef, details, url, ' +
-      'phone, parties, party_contact, special) VALUES ?';
-    connection.query(queryClear, (error, res) => {
-      if (error) throw error;
-      console.log('Table reset');
-    });
+    const seedQuery = 'INSERT INTO restaurants (id, name, description,  '
+      + 'menuOne, menuTwo, menuThree, menuFour, menuFive, cross_street, '
+      + 'neighborhood, hours, cuisine, style, dress, parking, transit, '
+      + 'payment, chef, details, url, phone, parties, party_contact, '
+      + 'special) VALUES ?';
+    /* eslint-disable-next-line no-unused-vars */
     connection.query(queryCreate, (error, res) => {
       if (error) throw error;
       console.log('Table created');
+    });
+    /* eslint-disable-next-line no-unused-vars */
+    connection.query(queryClear, (error, res) => {
+      if (error) throw error;
+      console.log('Table reset');
     });
     connection.query(seedQuery, [db.data.restaurants], (error, results) => {
       if (error) throw error;

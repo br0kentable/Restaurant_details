@@ -27,7 +27,8 @@ module.exports = {
         extensions: [".js", "jsx"]
       }
     ],
-    "max-len": ["error", 80]
+    "max-len": ["error", 80],
+    "import/no-extraneous-dependencies": ["error", { devDependencies: true }]
   },
   settings: {
     "import/resolver": {
